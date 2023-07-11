@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+   {% for account in list_obj %}
+
+      <h1>
+         <a href="/accounts/{{account.pk}}/">Name: {{account.name}}</a>
+         
+      </h1> 
+      <p>
+         <span class="text"> Age:</span>  
+         <span > {{account.age}} </span> 
+      </p>
+      
+      <p>
+         Zodiac: {{account.zodiac}}
+      </p>
+      <p>
+         Bad habits:{{account.about_bad_habits}}
+      </p>
+      
+   {% endfor %}
+
+{% endblock %}

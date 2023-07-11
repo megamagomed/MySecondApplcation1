@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1> {{ profile.user }} </h1>
+    <p> {{ profile.name }} </p>
+    <p> {{ profile.age }} </p>
+    <p> {{ profile.zodiac }} </p>
+    <p> {{ profile.about_bad_habits }} </p>
+    <a href="/accounts/confirm_user_delete/{{profile.pk}}/">Confirm delete</a>
+{% endblock %}
+    

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1> {{ profile.user }} </h1>
+<p> {{ profile.name }} </p>
+<p> {{ profile.age }} </p>
+<p> {{ profile.zodiac }} </p>
+<p> {{ profile.about_bad_habits }} </p>
+{% if profile.image %}
+<img src="{% static profile.image.url %}" alt="{{profile.article }}" height="400">
+{% endif %}
+{% if user.id == profile.user.id %}
+<a href="/accounts/edit/{{profile.pk}}/">Edit</a>
+<p>
+    <a href="/accounts/user_delete/{{profile.pk}}/">Delete</a>
+</p>
+{% else %}
+<p>
+    <a href="/accounts/{{profile.pk}}/like/">Like</a>
+</p>
+
+{% endif %}
+<h1>NEW VERSION</h1>
+{% for user, chat in chat_qs.items %}
+    <p>{{user}}</p>    
+
+    {% for c in chat %}
+        <h2>{{ c.message }}</h2>
+    {% endfor %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ chat_form.chat_text }}
+        <input type="text" name="reciever" value="{{user.id}}" hidden>
+        <input type="submit" value="Save">
+    </form>
+        
+{% endfor %}
+
+
+
+
+<p>
+    <a href="/accounts/">Back</a>
+</p>
+
+{% endblock %}
